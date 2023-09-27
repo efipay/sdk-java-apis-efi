@@ -246,6 +246,10 @@
                     "route": "/v2/gn/pix/enviados/:e2eId",
                     "method": "get"
                 },
+                "pixSendDetailId": {
+                    "route": "/v2/gn/pix/enviados/id-envio/:idEnvio",
+                    "method": "get"
+                },
                 "pixSendList": {
                     "route": "/v2/gn/pix/enviados",
                     "method": "get"
@@ -446,9 +450,9 @@
                     "route": "/v1/conta-simplificada/:idContaSimplificada/credenciais",
                     "method": "get"
                 },
-                "getAccountCertificate": {
+                "createAccountCertificate": {
                     "route": "/v1/conta-simplificada/:idContaSimplificada/certificado",
-                    "method": "get"
+                    "method": "post"
                 },
                 "accountConfigWebhook": {
                     "route": "/v1/webhook",

@@ -22,7 +22,7 @@ For more informations about [parameters](http://dev.sejaefi.com.br) and [values]
 **Via gradle:**
 
 ```gradle
-compile 'br.com.efipay.efisdk:sdk-java-apis-efi:1.0.0'
+implementation 'br.com.efipay.efisdk:sdk-java-apis-efi:1.0.0'
 ```
 
 **Via maven:**
