@@ -1,3 +1,7 @@
+# 1.0.3
+
+- Added a new endpoint and example to credit card payment retry
+
 # 1.0.2
 
 - Added a new endpoint and example to cancel a scheduled Pix payment via Open Finance
