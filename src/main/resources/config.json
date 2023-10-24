@@ -399,7 +399,7 @@
                     "method": "get"
                 },
                 "ofDevolutionPix": {
-                    "route": "/v1/devolucao/pagamento/pix",
+                    "route": "/v1/pagamentos/pix/:identificadorPagamento/devolver",
                     "method": "post"
                 },
                 "ofCancelSchedulePix": {
