@@ -401,6 +401,10 @@
                 "ofDevolutionPix": {
                     "route": "/v1/devolucao/pagamento/pix",
                     "method": "post"
+                },
+                "ofCancelSchedulePix": {
+                    "route": "/v1/pagamentos/pix/:identificadorPagamento/cancelar",
+                    "method": "patch"
                 }
             }
         },

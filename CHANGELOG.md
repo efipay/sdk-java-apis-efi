@@ -1,3 +1,7 @@
+# 1.0.2
+
+- Added a new endpoint and example to cancel a scheduled Pix payment via Open Finance
+
 # 1.0.1
 
 - Added a new endpoint and example to query a Pix send by its Id
