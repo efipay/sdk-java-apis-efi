@@ -17,13 +17,13 @@ Para mais informações sobre [parâmetros](http://sejaefi.com.br/api) e [valore
 * Java >= 7.0
 
 ## Testado com
-> java 7.0, 8.0, 13.0 e 20.0
+> java 7.0, 8.0, 13.0 e 18.0
 
 ## Instalação
 **Via gradle:**
 
 ```gradle
-implementation 'br.com.efipay.efisdk:sdk-java-apis-efi:1.0.0'
+implementation 'br.com.efipay.efisdk:sdk-java-apis-efi:1.0.4'
 ```
 
 **Via maven:**
@@ -32,7 +32,7 @@ implementation 'br.com.efipay.efisdk:sdk-java-apis-efi:1.0.0'
 <dependency>
     <groupId>br.com.efipay.efisdk</groupId>
 	  <artifactId>sdk-java-apis-efi</artifactId>
-	  <version>1.0.0</version>
+	  <version>1.0.4</version>
 </dependency>
 ```
 
