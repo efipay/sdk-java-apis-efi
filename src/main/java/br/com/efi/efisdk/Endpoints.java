@@ -39,7 +39,6 @@ public class Endpoints {
 	}
 
 	/**
-	 * Constructor Map<String, Object>
 	 * 
 	 * @param options Map com as definiçõess da API
 	 * @throws Exception

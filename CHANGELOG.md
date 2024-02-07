@@ -1,3 +1,7 @@
+# 1.0.4
+
+- Added the User-Agent in the header
+
 # 1.0.3
 
 - Added a new endpoint and example to credit card payment retry
