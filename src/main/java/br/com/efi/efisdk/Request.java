@@ -1,7 +1,9 @@
 package br.com.efi.efisdk;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.nio.charset.StandardCharsets;
@@ -25,7 +27,7 @@ public class Request {
 	private HttpURLConnection client;
 
 	public Request(String method, HttpURLConnection conn) throws IOException {
-		this.client = conn;
+		this.client = conn;		
 		this.client.setRequestProperty("Content-Type", "application/json");
 		this.client.setRequestProperty("charset", "UTF-8");
 		this.client.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36");
@@ -33,7 +35,6 @@ public class Request {
 
 		if (method.toUpperCase().equals("PATCH")) {
 			this.client.setRequestProperty("X-HTTP-Method-Override", "PATCH");
-			this.client.setRequestMethod("POST");
 		} else {
 			this.client.setRequestMethod(method.toUpperCase());
 		}
@@ -56,7 +57,7 @@ public class Request {
 		}
 
 		int responseCode = client.getResponseCode();
-		if (client.getResponseMessage().equals("No Content")){
+		if (client.getResponseMessage().equals("No Content") || client.getResponseMessage().equals("Accepted")){
 			throw new RuntimeException("{\"code: " + responseCode + "\"}");
 		} else{
 			if (responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_CREATED
@@ -75,6 +76,18 @@ public class Request {
 		}
 		}
 	} 
+
+	private String readInputStreamToString(InputStream inputStream) throws IOException {
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+			StringBuilder stringBuilder = new StringBuilder();
+			String line;
+			while ((line = reader.readLine()) != null) {
+				stringBuilder.append(line);
+			}
+			return stringBuilder.toString();
+		}
+	}
+
 	public String sendString(JSONObject requestOptions)
 			throws AuthorizationException, EfiPayException, IOException {
 		byte[] postDataBytes;
@@ -95,7 +108,7 @@ public class Request {
 			if (responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_CREATED
 					|| responseCode == HttpURLConnection.HTTP_ACCEPTED) {
 				InputStream responseStream = client.getInputStream();
-				String response = new String(responseStream.readAllBytes(), StandardCharsets.UTF_8);
+				String response = readInputStreamToString(responseStream);
 				return new String(response);
 			} else if (responseCode == HttpURLConnection.HTTP_UNAUTHORIZED
 					|| responseCode == HttpURLConnection.HTTP_FORBIDDEN) {

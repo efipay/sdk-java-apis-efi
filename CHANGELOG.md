@@ -1,3 +1,8 @@
+# 1.0.5
+
+- Added new endpoints for batch cobV
+- Added a new endpoint to change expire date of carnet
+
 # 1.0.4
 
 - Added the User-Agent in the header

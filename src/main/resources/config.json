@@ -58,6 +58,10 @@
                     "route": "/v1/carnet/:id/parcel/:parcel",
                     "method": "put"
                 },
+                "updateCarnetParcels": {
+                    "route": "/v1/carnet/:id/parcels",
+                    "method": "put"
+                },
                 "updateCarnetMetadata": {
                     "route": "/v1/carnet/:id/metadata",
                     "method": "put"
@@ -368,6 +372,22 @@
                 },
                 "detailReport": {
                     "route": "/v2/gn/relatorios/:id",
+                    "method": "get"
+                },
+                "pixCreateDueChargeBatch": {
+                    "route": "/v2/lotecobv/:id",
+                    "method": "put"
+                },
+                "pixUpdateDueChargeBatch": {
+                    "route": "/v2/lotecobv/:id",
+                    "method": "patch"
+                },
+                "pixDetailDueChargeBatch": {
+                    "route": "/v2/lotecobv/:id",
+                    "method": "get"
+                },
+                "pixListDueChargeBatch": {
+                    "route": "/v2/lotecobv",
                     "method": "get"
                 }
             }
