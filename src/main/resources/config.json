@@ -189,6 +189,10 @@
                 "cardPaymentRetry": {
                     "route": "/v1/charge/:id/retry",
                     "method": "post"
+                },
+                "refundCard": {
+                    "route": "/v1/charge/card/:id/refund",
+                    "method": "post"
                 }
             }
         },
@@ -389,7 +393,16 @@
                 "pixListDueChargeBatch": {
                     "route": "/v2/lotecobv",
                     "method": "get"
+                },
+                "medList": {
+                    "route": "/v2/gn/infracoes",
+                    "method": "get"
+                },
+                "medDefense": {
+                    "route": "/v2/gn/infracoes/:idInfracao/defesa",
+                    "method": "post"
                 }
+                
             }
         },
         "OPEN-FINANCE": {
@@ -456,6 +469,18 @@
                 },
                 "payListPayments": {
                     "route": "/v1/resumo",
+                    "method": "get"
+                },
+                "payConfigWebhook": {
+                    "route": "/v1/webhook",
+                    "method": "put"
+                },
+                "payDeleteWebhook": {
+                    "route": "/v1/webhook",
+                    "method": "delete"
+                },
+                "payListWebhook": {
+                    "route": "/v1/webhook",
                     "method": "get"
                 }
             }

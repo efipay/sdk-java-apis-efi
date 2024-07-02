@@ -32,7 +32,7 @@ implementation 'br.com.efipay.efisdk:sdk-java-apis-efi:1.0.5'
 <dependency>
     <groupId>br.com.efipay.efisdk</groupId>
 	  <artifactId>sdk-java-apis-efi</artifactId>
-	  <version>1.0.5</version>
+	  <version>1.0.6</version>
 </dependency>
 ```
 

@@ -1,3 +1,9 @@
+# 1.0.6
+
+- Added a new endpoint to refund of a payment made via credit card
+- Added new endpoints for MED
+- Added webhooks endpoints from the Bill Payment API
+
 # 1.0.5
 
 - Added new endpoints for batch cobV
