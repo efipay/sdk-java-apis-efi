@@ -1,3 +1,13 @@
+# 1.1.1
+
+- Added routes to the config.json file
+
+
+# 1.1.0
+
+- Added a new endpoint and example for Detail QrCode and Pay QrCode
+- Renamed the pix and send folders to management and payment respectively
+
 # 1.0.6
 
 - Added a new endpoint to refund of a payment made via credit card

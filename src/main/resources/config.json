@@ -401,6 +401,14 @@
                 "medDefense": {
                     "route": "/v2/gn/infracoes/:idInfracao/defesa",
                     "method": "post"
+                },
+                "pixQrCodePay": {
+                    "route": "/v2/gn/pix/:idEnvio/qrcode",
+                    "method": "put"
+                },
+                "pixQrCodeDetail": {
+                    "route": "/v2/gn/qrcodes/detalhar",
+                    "method": "post"
                 }
                 
             }

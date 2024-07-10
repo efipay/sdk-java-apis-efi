@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.efipay.efisdk</groupId>
 	<artifactId>sdk-java-apis-efi</artifactId>
-	<version>1.0.6</version>
+	<version>1.1.1</version>
 
 	<name>SDK JAVA APIS EFI</name>
 	<description>Java SDK for integrating with Efí API</description>
