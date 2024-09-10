@@ -46,6 +46,10 @@
                     "route": "/v1/charge/:id/cancel",
                     "method": "put"
                 },
+                "listCharges": {
+                    "route": "/v1/charges",
+                    "method": "get"
+                },
                 "createCarnet": {
                     "route": "/v1/carnet",
                     "method": "post"
@@ -108,6 +112,10 @@
                 },
                 "updateSubscriptionMetadata": {
                     "route": "/v1/subscription/:id/metadata",
+                    "method": "put"
+                },
+                "updateSubscription": {
+                    "route": "/v1/subscription/:id",
                     "method": "put"
                 },
                 "createSubscriptionHistory": {
@@ -447,8 +455,36 @@
                     "route": "/v1/pagamentos/pix/:identificadorPagamento/devolver",
                     "method": "post"
                 },
-                "ofCancelSchedulePix": {
-                    "route": "/v1/pagamentos/pix/:identificadorPagamento/cancelar",
+                "ofStartSchedulePixPayment": {
+                    "route": "/v1/pagamentos-agendados/pix",
+                    "method": "post"
+                },
+                "ofListSchedulePixPayment": {
+                    "route": "/v1/pagamentos-agendados/pix",
+                    "method": "get"
+                },
+                "ofDevolutionSchedulePix": {
+                    "route": "/v1/pagamentos-agendados/pix/:identificadorPagamento/devolver",
+                    "method": "post"
+                },
+                "ofCancelSchedulePix" : {
+                    "route" : "/v1/pagamentos-agendados/pix/:identificadorPagamento/cancelar",
+                    "method": "patch"
+                },
+                "ofStartRecurrencyPixPayment": {
+                    "route": "/v1/pagamentos-recorrentes/pix",
+                    "method": "post"
+                },
+                "ofListRecurrencyPixPayment": {
+                    "route": "/v1/pagamentos-recorrentes/pix",
+                    "method": "get"
+                },
+                "ofDevolutionRecurrencyPix": {
+                    "route": "/v1/pagamentos-recorrentes/pix/:endToEndId/devolver",
+                    "method": "post"
+                },
+                "ofCancelRecurrencyPix" : {
+                    "route" : "/v1/pagamentos-recorrentes/pix/:identificadorPagamento/cancelar",
                     "method": "patch"
                 }
             }

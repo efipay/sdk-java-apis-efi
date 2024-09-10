@@ -1,3 +1,9 @@
+# 1.2.1
+
+- Added new endpoints for Pix API through Open Finance (Scheduled payments and Recurent payments)
+- Added a new endpoint to list charges
+- Added a new endpoint for modify subscription data
+
 # 1.1.1
 
 - Added routes to the config.json file
