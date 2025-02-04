@@ -11,7 +11,7 @@ import org.json.JSONObject;
  *
  */
 public class Config {
-	private final static String version = "1.2.1";
+	private final static String version = "1.2.2";
 	private JSONObject conf = new JSONObject();
 	private JSONObject endpoints = new JSONObject();
 	private JSONObject urls = new JSONObject();

@@ -230,6 +230,10 @@
                     "route": "/v2/webhook/:chave",
                     "method": "delete"
                 },
+                "pixResendWebhook": {
+                    "route": "/v2/gn/webhook/reenviar",
+                    "method": "post"
+                },
                 "pixCreateCharge": {
                     "route": "/v2/cob/:txid",
                     "method": "put"
@@ -259,7 +263,7 @@
                     "method": "get"
                 },
                 "pixSend": {
-                    "route": "/v2/gn/pix/:idEnvio",
+                    "route": "/v3/gn/pix/:idEnvio",
                     "method": "put"
                 },
                 "pixSendDetail": {
@@ -435,7 +439,7 @@
                     "route": "/v1/config",
                     "method": "put"
                 },
-                "ofConfigDetail": {
+                "ofConfigDetail": { 
                     "route": "/v1/config",
                     "method": "get"
                 },
@@ -480,11 +484,15 @@
                     "method": "get"
                 },
                 "ofDevolutionRecurrencyPix": {
-                    "route": "/v1/pagamentos-recorrentes/pix/:endToEndId/devolver",
+                    "route": "/v1/pagamentos-recorrentes/pix/:identificadorPagamento/devolver",
                     "method": "post"
                 },
                 "ofCancelRecurrencyPix" : {
                     "route" : "/v1/pagamentos-recorrentes/pix/:identificadorPagamento/cancelar",
+                    "method": "patch"
+                },
+                "ofReplaceRecurrencyPixParcel" : {
+                    "route" : "/v1/pagamentos-recorrentes/pix/:identificadorPagamento/substituir/:endToEndId",
                     "method": "patch"
                 }
             }
@@ -566,6 +574,42 @@
                 "accountDeleteWebhook": {
                     "route": "/v1/webhook/:identificadorWebhook",
                     "method": "delete"
+                }
+            }
+        },
+        "STATEMENTS": {
+            "URL": {
+                "production": "https://extratos.api.efipay.com.br",
+                "sandbox": null
+            },
+            "ENDPOINTS": {
+                "authorize": {
+                    "route": "/v1/oauth/token",
+                    "method": "post"
+                },
+                "listStatementFiles": {
+                    "route": "/v1/extrato-cnab/arquivos",
+                    "method": "get"
+                },
+                "getStatementFile": {
+                    "route": "/v1/extrato-cnab/download/:nome_arquivo",
+                    "method": "get"
+                },
+                "listStatementRecurrences": {
+                    "route": "/v1/extrato-cnab/agendamentos",
+                    "method": "get"
+                },
+                "createStatementRecurrency": {
+                    "route": "/v1/extrato-cnab/agendar",
+                    "method": "post"
+                },
+                "updateStatementRecurrency": {
+                    "route": "/v1/extrato-cnab/agendar/:identificador",
+                    "method": "patch"
+                },
+                "createSftpKey": {
+                    "route": "/v1/extrato-cnab/gerar-chaves",
+                    "method": "post"
                 }
             }
         }

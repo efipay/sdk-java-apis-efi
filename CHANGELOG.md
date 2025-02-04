@@ -1,6 +1,13 @@
+# 1.2.2
+
+- Added Statements API endpoints and examples
+- Added endpoint and example to resend Pix webhook
+- Added a new endpoint to Replace recurring payment parcel - Open Finance
+- Pix sending route updated to v3
+
 # 1.2.1
 
-- Added new endpoints for Pix API through Open Finance (Scheduled payments and Recurent payments)
+- Added new endpoints for Pix API through Open Finance (Scheduled payments and Recurrent payments)
 - Added a new endpoint to list charges
 - Added a new endpoint for modify subscription data
 
