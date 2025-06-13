@@ -109,6 +109,20 @@ public class APIRequest {
         return this.requester.sendArray(this.bodyArray);
     }
 
+    public byte[] sendAsBytes() throws AuthorizationException, EfiPayException, IOException {
+        Date expiredDate = this.authenticator.getExpires();
+        if (expiredDate == null || expiredDate.compareTo(new Date()) <= 0) {
+            this.authenticator.authorize();
+        }
+        this.requester.addHeader("Authorization", "Bearer " + this.authenticator.getAccessToken());
+        try {
+            return this.requester.sendAsBytes(this.body);
+        } catch (AuthorizationException e) {
+            this.authenticator.authorize();
+            return this.requester.sendAsBytes(this.body);
+        }
+    }
+
     public Request getRequester() {
         return requester;
     }

@@ -201,6 +201,18 @@
                 "refundCard": {
                     "route": "/v1/charge/card/:id/refund",
                     "method": "post"
+                }, 
+                "resendChargeNotification": {
+                    "route": "/v1/charge/:id/notification/resend",
+                    "method": "GET"
+                },
+                "resendCarnetNotification": {
+                    "route": "/v1/carnet/:id/notification/resend",
+                    "method": "GET" 
+                },
+                "resendSubscriptionNotification": {
+                    "route": "/v1/subscription/:id/notification/resend",
+                    "method": "GET"
                 }
             }
         },
@@ -421,8 +433,103 @@
                 "pixQrCodeDetail": {
                     "route": "/v2/gn/qrcodes/detalhar",
                     "method": "post"
+                },
+                "pixGetReceipt" : {
+                    "route" : "/v2/gn/pix/comprovantes",
+                    "method": "get"
+                },
+                "pixCreateRecurrenceAutomatic" : {
+                    "route" : "/v2/rec",
+                    "method": "post"
+                }, 
+                "pixDetailRecurrenceAutomatic" : {
+                    "route" : "/v2/rec/:idRec",
+                    "method": "get"
+                }, 
+                "pixUpdateRecurrenceAutomatic" : {
+                    "route" : "/v2/rec/:idRec",
+                    "method": "patch"
+                }, 
+                "pixListRecurrenceAutomatic" : {
+                    "route" : "/v2/rec",
+                    "method": "get"
+                }, 
+                "pixCreateRequestRecurrenceAutomatic" : {
+                    "route" : "/v2/solicrec",
+                    "method": "post"
+                }, 
+                "pixDetailRequestRecurrenceAutomatic" : {
+                    "route" : "/v2/solicrec/:idSolicRec",
+                    "method": "get"
+                }, 
+                "pixUpdateRequestRecurrenceAutomatic" : {
+                    "route" : "/v2/solicrec/:idSolicRec",
+                    "method": "patch"
+                }, 
+                "pixCreateAutomaticChargeTxid" : {
+                    "route" : "/v2/cobr/:txid",
+                    "method": "put"
+                }, 
+                "pixUpdateAutomaticCharge" : {
+                    "route" : "/v2/cobr/:txid",
+                    "method": "patch"
+                }, 
+                "pixDetailAutomaticCharge" : {
+                    "route" : "/v2/cobr/:txid",
+                    "method": "get"
+                }, 
+                "pixCreateAutomaticCharge" : {
+                    "route" : "/v2/cobr",
+                    "method": "post"
+                }, 
+                "pixListAutomaticCharge" : {
+                    "route" : "/v2/cobr",
+                    "method": "get"
+                }, 
+                "pixRetryRequestAutomatic" : {
+                    "route" : "/v2/cobr/:txid/retentativa/:data",
+                    "method": "post"
+                }, 
+                "pixCreateLocationRecurrenceAutomatic" : {
+                    "route" : "/v2/locrec",
+                    "method": "post"
+                }, 
+                "pixListLocationRecurrenceAutomatic" : {
+                    "route" : "/v2/locrec",
+                    "method": "get"
+                }, 
+                "pixDetailLocationRecurrenceAutomatic" : {
+                    "route" : "/v2/locrec/:id",
+                    "method": "get"
+                }, 
+                "pixUnlinkLocationRecurrenceAutomatic" : {
+                    "route": "/v2/locrec/:id/idRec",
+                    "method": "delete"
+                }, 
+                "pixConfigWebhookRecurrenceAutomatic" : {
+                    "route" : "/v2/webhookrec",
+                    "method": "put"
+                }, 
+                 "pixListWebhookRecurrenceAutomatic" : {
+                    "route" : "/v2/webhookrec",
+                    "method": "get"
+                }, 
+                "pixDeleteWebhookRecurrenceAutomatic" : {
+                    "route" : "/v2/webhookrec",
+                    "method": "delete"
+                }, 
+                "pixConfigWebhookAutomaticCharge" : {
+                    "route" : "/v2/webhookcobr",
+                    "method": "put"
+                }, 
+                "pixListWebhookAutomaticCharge" : {
+                    "route" : "/v2/webhookcobr",
+                    "method": "get"
+                }, 
+                "pixDeleteWebhookAutomaticCharge" : {
+                    "route" : "/v2/webhookcobr",
+                    "method": "delete"
                 }
-                
             }
         },
         "OPEN-FINANCE": {
@@ -493,6 +600,46 @@
                 },
                 "ofReplaceRecurrencyPixParcel" : {
                     "route" : "/v1/pagamentos-recorrentes/pix/:identificadorPagamento/substituir/:endToEndId",
+                    "method": "patch"
+                },
+                "ofCreateBiometricEnrollment": {
+                    "route": "/v1/jsr/vinculos",
+                    "method": "post"
+                },
+                "ofListBiometricEnrollment": {
+                    "route": "/v1/jsr/vinculos",
+                    "method": "get"
+                },
+                "ofCreateBiometricPixPayment" : {
+                    "route" : "/v1/jsr/pagamentos/pix",
+                    "method": "post"
+                },
+                "ofListBiometricPixPayment" : {
+                    "route" : "/v1/jsr/pagamentos/pix",
+                    "method": "get"
+                },
+                 "ofCreateAutomaticEnrollment" : {
+                    "route" : "/v1/pagamentos-automaticos/adesao",
+                    "method": "post"
+                },
+                "ofListAutomaticEnrollment" : {
+                    "route" : "/v1/pagamentos-automaticos/adesao",
+                    "method": "get"
+                },
+                "ofUpdateAutomaticEnrollment": {
+                    "route": "/v1/pagamentos-automaticos/adesao",
+                    "method": "patch"
+                },
+                "ofCreateAutomaticPixPayment": {
+                    "route": "/v1/pagamentos-automaticos/pix",
+                    "method": "post"
+                },
+                "ofListAutomaticPixPayment" : {
+                    "route" : "/v1/pagamentos-automaticos/pix",
+                    "method": "get"
+                },
+                "ofCancelAutomaticPixPayment" : {
+                    "route" : "/v1/pagamentos-automaticos/pix",
                     "method": "patch"
                 }
             }

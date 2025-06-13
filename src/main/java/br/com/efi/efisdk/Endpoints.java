@@ -93,6 +93,10 @@ public class Endpoints {
         return kernelCallArray(endpoint, params, body);
     }
 
+    public byte[] callImage(String endpointName, Map<String, String> params, JSONObject body) throws Exception {
+        return kernelCallImage(endpointName, params, body);
+    }
+
     public Map<String, Object> call(String endpoint, Map<String, String> params, Map<String, Object> mapBody)
             throws Exception {
         JSONObject body = (JSONObject) JSONObject.wrap(mapBody);
@@ -198,6 +202,33 @@ public class Endpoints {
         }
 
         JSONArray response = this.requester.sendArray();
+        this.requester = null;
+
+        return response;
+    }
+
+    private byte[] kernelCallImage(String endpointName, Map<String, String> params, JSONObject body) throws Exception {
+        JSONObject endpoints = this.config.getEndpoints();
+        HashMap<String, JSONObject> api = getRoute(endpoints, endpointName);
+
+        if (!api.containsKey("ENDPOINTS")) {
+            throw new Exception("nonexistent endpoint");
+        }
+
+        JSONObject api_url = (JSONObject) api.get("URL");
+        this.config.setURLs(api_url);
+
+        JSONObject api_endpoints = (JSONObject) api.get("ENDPOINTS");
+        JSONObject api_auth = (JSONObject) api_endpoints.get("authorize");
+        JSONObject endpoint = (JSONObject) api_endpoints.get(endpointName);
+        String routeName = getRoute(endpoint, params);
+        routeName += getQueryString(params);
+
+        if (this.requester == null) {
+            requester = new APIRequest(endpoint.get("method").toString(), routeName, body, api_auth, this.config);
+        }
+
+        byte[] response = this.requester.sendAsBytes();  // <- método novo que retorna `byte[]`
         this.requester = null;
 
         return response;

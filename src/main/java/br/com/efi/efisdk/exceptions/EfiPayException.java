@@ -18,28 +18,7 @@ public class EfiPayException extends Exception {
 
 	public EfiPayException(JSONObject response) {
 		String message = "";
-		if (response.has("error_description")) {
-			if (response.get("error_description").getClass().getSimpleName().equals("JSONObject")) {
-				JSONObject errorDescription = response.getJSONObject("error_description");
-				if (errorDescription.has("message"))
-					message = errorDescription.getString("message");
-				else
-					message = response.get("error_description").toString();
-
-				if (errorDescription.has("property"))
-					message += ":" + errorDescription.get("property");
-			} else
-				message = response.get("error_description").toString();
-
-			if (response.has("code"))
-			this.code = Integer.parseInt(response.get("code").toString());
-			this.error = response.get("error").toString();
-			this.errorDescription = message;
-
-		} else if (response.has("nome")) {
-			this.error = response.get("nome").toString();
-			this.errorDescription = response.get("mensagem").toString();
-		} else if (response.has("violacoes")) {
+		if (response.has("violacoes")) {
 			if (response.get("violacoes").getClass().getSimpleName().equals("JSONArray")) {
 				JSONArray violacoes = response.getJSONArray("violacoes");
 				for (int i = 0; i < violacoes.length(); i++) {
@@ -50,8 +29,37 @@ public class EfiPayException extends Exception {
 					}
 				}
 			}
+		} else if (response.has("error_description")) {
+			if (response.get("error_description").getClass().getSimpleName().equals("JSONObject")) {
+				JSONObject errorDescription = response.getJSONObject("error_description");
+				if (errorDescription.has("message")) {
+					message = errorDescription.getString("message");
+				} else {
+					message = response.get("error_description").toString();
+				}
+
+				if (errorDescription.has("property")) {
+					message += ":" + errorDescription.get("property");
+				}
+			} else {
+				message = response.get("error_description").toString();
+			}
+
+			if (response.has("code")) {
+				this.code = Integer.parseInt(response.get("code").toString());
+			}
+			this.error = response.get("error").toString();
+			this.errorDescription = message;
+
+		} else if (response.has("nome")) {
+			this.error = response.get("nome").toString();
+			this.errorDescription = response.get("mensagem").toString();
+		} else if (response.has("title") && response.has("detail")) {
+			this.error = response.getString("title");
+			this.errorDescription = response.getString("detail");
 		} else {
 			System.out.println(response);
+
 		}
 	}
 
@@ -69,9 +77,10 @@ public class EfiPayException extends Exception {
 
 	@Override
 	public String getMessage() {
-		if (this.code != 0)
+		if (this.code != 0) {
 			return "Error " + this.code + " - " + this.error + ": " + this.errorDescription;
-		else
+		} else {
 			return "Error: " + this.errorDescription;
+		}
 	}
 }

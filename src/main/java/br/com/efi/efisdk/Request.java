@@ -1,6 +1,7 @@
 package br.com.efi.efisdk;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -26,8 +27,10 @@ import br.com.efi.efisdk.exceptions.EfiPayException;
 public class Request {
 
     private HttpURLConnection client;
+    private String method;
 
     public Request(String method, HttpURLConnection conn) throws IOException {
+        this.method = method.toUpperCase();
         this.client = conn;
         this.client.setRequestProperty("Content-Type", "application/json");
         this.client.setRequestProperty("charset", "UTF-8");
@@ -46,15 +49,14 @@ public class Request {
     }
 
     public JSONObject send(JSONObject requestOptions) throws AuthorizationException, EfiPayException, IOException {
-        byte[] postDataBytes;
-        postDataBytes = requestOptions.toString().getBytes("UTF-8");
-        this.client.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
-        if (!client.getRequestMethod().toLowerCase().equals("get")) {
+        if (!requestOptions.isEmpty()) {
+            byte[] postDataBytes = requestOptions.toString().getBytes(StandardCharsets.UTF_8);
+            client.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
             client.setDoOutput(true);
-            OutputStream os = client.getOutputStream();
-            os.write(postDataBytes);
-            os.flush();
-            os.close();
+            try (OutputStream os = client.getOutputStream()) {
+                os.write(postDataBytes);
+                os.flush();
+            }
         }
 
         int responseCode = client.getResponseCode();
@@ -85,8 +87,6 @@ public class Request {
 
                 }
                 case HttpURLConnection.HTTP_UNAUTHORIZED:
-                case HttpURLConnection.HTTP_FORBIDDEN:
-                    throw new AuthorizationException();
                 case 422: {
                     InputStream responseStream = client.getErrorStream();
                     JSONTokener responseTokener = new JSONTokener(responseStream);
@@ -168,6 +168,53 @@ public class Request {
             JSONTokener responseTokener = new JSONTokener(responseStream);
             JSONObject response = new JSONObject(responseTokener);
             throw new EfiPayException(response);
+        }
+    }
+
+    public byte[] sendAsBytes(JSONObject requestOptions)
+            throws AuthorizationException, EfiPayException, IOException {
+
+        if (!"GET".equalsIgnoreCase(this.method)) {
+            String bodyString = requestOptions.toString();
+            this.client.setRequestProperty("Content-Length", String.valueOf(bodyString.getBytes("UTF-8").length));
+            client.setDoOutput(true);
+
+            try (OutputStream os = client.getOutputStream()) {
+                os.write(bodyString.getBytes("UTF-8"));
+                os.flush();
+            }
+        } else {
+            client.setDoOutput(false);
+        }
+
+        int responseCode = client.getResponseCode();
+
+        if (responseCode == HttpURLConnection.HTTP_OK
+                || responseCode == HttpURLConnection.HTTP_CREATED
+                || responseCode == HttpURLConnection.HTTP_ACCEPTED) {
+
+            try (InputStream responseStream = client.getInputStream(); ByteArrayOutputStream buffer = new ByteArrayOutputStream()) {
+
+                byte[] data = new byte[4096];
+                int nRead;
+                while ((nRead = responseStream.read(data, 0, data.length)) != -1) {
+                    buffer.write(data, 0, nRead);
+                }
+                buffer.flush();
+
+                byte[] responseBytes = buffer.toByteArray();
+
+                return responseBytes;
+            }
+
+        } else {
+
+            try (InputStream errorStream = client.getErrorStream()) {
+                JSONTokener responseTokener = new JSONTokener(errorStream);
+                JSONObject response = new JSONObject(responseTokener);
+                throw new EfiPayException(response);
+            }
+
         }
     }
 

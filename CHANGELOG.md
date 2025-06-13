@@ -1,3 +1,10 @@
+# 1.2.3
+
+- Added endpoint and example to get receipts of Pix transactions
+- Added endpoints and examples for Automatic Pix - Pix API
+- Added endpoints and examples for Automatic Payments - Open Finance API
+- Added endpoints and examples for Payments by biometrics - Open Finance API
+
 # 1.2.2
 
 - Added Statements API endpoints and examples
