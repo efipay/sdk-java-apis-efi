@@ -603,19 +603,23 @@
                     "method": "patch"
                 },
                 "ofCreateBiometricEnrollment": {
-                    "route": "/v1/jsr/vinculos",
+                    "route": "/v1/pagamentos-biometria/vinculos",
                     "method": "post"
                 },
                 "ofListBiometricEnrollment": {
-                    "route": "/v1/jsr/vinculos",
+                    "route": "/v1/pagamentos-biometria/vinculos",
                     "method": "get"
                 },
+                "ofRevokeBiometricEnrollment": {
+                    "route": "/v1/pagamentos-biometria/vinculos",
+                    "method": "patch"
+                },
                 "ofCreateBiometricPixPayment" : {
-                    "route" : "/v1/jsr/pagamentos/pix",
+                    "route" : "/v1/pagamentos-biometria/pix",
                     "method": "post"
                 },
                 "ofListBiometricPixPayment" : {
-                    "route" : "/v1/jsr/pagamentos/pix",
+                    "route" : "/v1/pagamentos-biometria/pix",
                     "method": "get"
                 },
                  "ofCreateAutomaticEnrollment" : {

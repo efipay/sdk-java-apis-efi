@@ -23,7 +23,7 @@ Para mais informações sobre [parâmetros](http://sejaefi.com.br/api) e [valore
 **Via gradle:**
 
 ```gradle
-implementation 'br.com.efipay.efisdk:sdk-java-apis-efi:1.2.3'
+implementation 'br.com.efipay.efisdk:sdk-java-apis-efi:1.2.4'
 ```
 
 **Via maven:**
@@ -32,7 +32,7 @@ implementation 'br.com.efipay.efisdk:sdk-java-apis-efi:1.2.3'
 <dependency>
     <groupId>br.com.efipay.efisdk</groupId>
 	  <artifactId>sdk-java-apis-efi</artifactId>
-	  <version>1.2.3</version>
+	  <version>1.2.4</version>
 </dependency>
 ```
 

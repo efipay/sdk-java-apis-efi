@@ -1,3 +1,8 @@
+# 1.2.4
+
+- Update of biometric payment routes
+- Added a new endpoint to Revoke enrollment - Open Finance API
+
 # 1.2.3
 
 - Added endpoint and example to get receipts of Pix transactions
